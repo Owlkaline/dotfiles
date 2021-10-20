@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='utf-8'?>
+<snippets language="rust">
+  <snippet>
+    <tag>gs</tag>
+    <text><![CDATA[pub fn set_${1:var}(&mut self, x: ${2:type}) {
+  self.${1:var} = x;
+}
+
+pub fn ${1:var}(&self) -> &${2:type} {
+  &self.${1:var}
+}]]></text>
+    <description>pubfngetset</description>
+  </snippet>
+  <snippet>
+    <tag>struct</tag>
+    <text><![CDATA[pub struct ${1:struct} {
+  ${2}: ${3},
+  ${4}: ${5},
+  ${6}: ${6},
+}]]></text>
+    <description>pubstruct</description>
+  </snippet>
+  <snippet>
+    <tag>impl</tag>
+    <text><![CDATA[impl ${1:struct} {
+  pub fn new() -> ${1:struct} {
+    
+    ${1:struct} {
+      
+    }
+  }
+}]]></text>
+    <description>implstruct</description>
+  </snippet>
+  <snippet>
+    <tag>full3</tag>
+    <text><![CDATA[pub struct ${1:struct} {
+  ${2}: ${3},
+  ${4}: ${5},
+  ${6}: ${7},
+}
+
+impl ${1:struct} {
+  pub fn new() -> ${1:struct} {
+    
+    let ${2}: ${3} = Default::default();
+    let ${4}: ${5} = Default::default();
+    let ${6}: ${7} = Default::default();
+    
+    ${1:struct} {
+      ${2},
+      ${4},
+      ${6},
+    }
+  }
+}]]></text>
+    <description>fullstruct</description>
+  </snippet>
+  <snippet>
+    <tag>g</tag>
+    <text><![CDATA[pub fn ${1:var}(&self) -> &${2:type} {
+  &self.${1:var}
+}]]></text>
+    <description>pubfnget</description>
+  </snippet>
+  <snippet>
+    <tag>gm</tag>
+    <text><![CDATA[pub fn mut_${1:var}(&self) -> &mut ${2:type} {
+  &mut self.${1:var}
+}]]></text>
+    <description>pubfngetmut</description>
+  </snippet>
+  <snippet>
+    <tag>s</tag>
+    <text><![CDATA[pub fn set_${1:var}(&mut self, x: ${2:type}) {
+  self.${1:var} = x;
+}]]></text>
+    <description>set</description>
+  </snippet>
+  <snippet>
+    <tag>full2</tag>
+    <text><![CDATA[pub struct ${1:struct} {
+  ${2}: ${3},
+  ${4}: ${5},
+}
+
+impl ${1:struct} {
+  pub fn new() -> ${1:struct} {
+    
+    let ${2}: ${3} = Default::default();
+    let ${4}: ${5} = Default::default();
+    
+    ${1:struct} {
+      ${2},
+      ${4},
+    }
+  }
+}]]></text>
+    <description>fullstruct2</description>
+  </snippet>
+  <snippet>
+    <tag>full6</tag>
+    <text><![CDATA[pub struct ${1:struct} {
+  ${2}: ${3},
+  ${4}: ${5},
+  ${6}: ${7},
+  ${8}: ${9},
+  ${10}: ${11},
+  ${12}: ${13},
+}
+
+impl ${1:struct} {
+  pub fn new() -> ${1:struct} {
+    
+    let ${2}: ${3} = Default::default();
+    let ${4}: ${5} = Default::default();
+    let ${6}: ${7} = Default::default();
+    let ${8}: ${9} = Default::default();
+    let ${10}: ${11} = Default::default();
+    let ${12}: ${13} = Default::default();
+    
+    ${1:struct} {
+      ${2},
+      ${4},
+      ${6},
+      ${8},
+      ${10},
+      ${12},
+    }
+  }
+}]]></text>
+    <description>New snippet</description>
+  </snippet>
+  <snippet>
+    <tag>full4</tag>
+    <text><![CDATA[pub struct ${1:struct} {
+  ${2}: ${3},
+  ${4}: ${5},
+  ${6}: ${7},
+  ${8}: ${9},,
+}
+
+impl ${1:struct} {
+  pub fn new() -> ${1:struct} {
+    
+    let ${2}: ${3} = Default::default();
+    let ${4}: ${5} = Default::default();
+    let ${6}: ${7} = Default::default();
+    let ${8}: ${9} = Default::default();
+    
+    ${1:struct} {
+      ${2},
+      ${4},
+      ${6},
+      ${8},
+    }
+  }
+}]]></text>
+    <description>fullstruct4</description>
+  </snippet>
+</snippets>
