@@ -36,18 +36,26 @@ exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 exec wl-paste -t text --watch clipman store --no-persist
 
+
+output DP-3 max_render_time off
+#output DP-3 render_bit_rate 10
 output * adaptive_sync on
+output DP-3 pos 0 0 res 2560x1440
+output HDMI-A-1 pos 2660 0 res 2560x1080
+output DP-2 pos 5220 0 res 2560x1080
 
 #exec redshift -P -t 6500:4000
 #exec xrandr --output DP-0 --mode 1920x1080 --rate 60.00 --right-of DVI-D-0
 #exec_always xrandr --output DisplayPort-0 --off --output DisplayPort-1 --off --output DisplayPort-2 --mode 1920x1080 --pos 2560x0 --rotate normal --output HDMI-A-0 --mode 2560x1080 --pos 0x0 --rotate normal
-exec_always /home/akuma/.screenlayout/double.sh
+#exec_always /home/akuma/.screenlayout/double.sh
 #bindsym Print exec scrot $HOME/Pictures/Screenshot_from_`date +%Y-%m-%d_%H:%M:%S`.png -e 'gimp $f' 
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 
-workspace 1 output primary
-workspace 3 output DisplayPort-2 
+workspace 1 output DP-3
+workspace 2 output DP-2 
+workspace 3 output HDMMI-A-1
+
 
 exec_always --no-startup-id picom -cb
 #exec --no-startup-id picom -CGb
@@ -61,10 +69,13 @@ smart_borders on
 
 #border_radius 10
 
-for_window [class="keepassxc"] floating enable
-for_window [class="firefox"] inhibit_idle fullscreen; border none; max_render_time off
-for_window [class="Steam"] floating enable; max_render_time off
-for_window [class=".*.exe"] inhibit_idle fullscreen; floating enable; border none
+for_window [app_id="org.keepassxc.KeePassXC"] floating enable
+for_window [app_id="firefox"] border none; max_render_time off
+for_window [app_id="Steam"] floating enable; max_render_time off
+#for_window [class=".*.exe"] inhibit_idle fullscreen; floating enable; border none
+for_window [class="pathofexile.exe"] inhibit_idle fullscreen; floating enable; border none
+for_window [class="awakened-poe-trade"] fullscreen; floating enable; border none
+for_window [class="null"] floating enable
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -89,6 +100,8 @@ bindsym $mod+d exec --no-startup-id dmenu_run
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
+
+bindsym Print exec grimshot copy area
 
 # change focus
 bindsym $mod+j focus left
@@ -184,6 +197,18 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r exec --no-startup-id systemctl reboot
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+input 1386:884:Wacom_Intuos_S_Pen {
+    accel_profile "flat"
+    pointer_accel 0
+    map_to_output DP-3
+}
+
+input 1386:884:Wacom_Intuos_S_Pad {
+    accel_profile "flat"
+    pointer_accel 0
+    map_to_output DP-3
+}
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -292,3 +317,6 @@ client.background       #F8F8F2
 #}
 
 #bindsym $mod+d exec "dmenu_run -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'monospace-10' -p 'dmenu%'"
+
+#exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec "systemctl --user import-environment SWAYSOCK WAYLAND_DISPLAY;

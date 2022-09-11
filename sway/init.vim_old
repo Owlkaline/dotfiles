@@ -1,0 +1,114 @@
+call plug#begin(stdpath('data') . '/plugged')
+
+"Plug 'ycm-core/YouCompleteMe'
+
+Plug 'arcticicestudio/nord-vim'
+Plug 'tyrannicaltoucan/vim-deep-space'
+Plug 'herrbischoff/cobalt2.vim'
+Plug 'altercation/vim-colors-solarized'
+Plug 'jacoborus/tender.vim'
+Plug 'wadackel/vim-dogrun'
+Plug 'nightsense/carbonized'
+Plug 'gkjgh/cobalt'
+Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+Plug 'rakr/vim-two-firewatch'
+Plug 'rakr/vim-one'
+Plug 'dracula/vim'
+
+Plug 'preservim/nerdcommenter'
+Plug 'itchyny/lightline.vim'
+Plug 'itchyny/vim-gitbranch'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'preservim/nerdtree'
+Plug 'tikhomirov/vim-glsl'
+Plug 'rust-lang/rust.vim'
+Plug 'luochen1990/rainbow'
+
+Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
+
+Plug 'neovim/nvim-lspconfig'
+Plug 'simrat39/rust-tools.nvim'
+
+call plug#end()
+
+set completeopt+=preview
+set completeopt+=menuone
+set completeopt+=longest
+
+set history=500
+set cc=100
+
+set ignorecase
+set lazyredraw
+
+syntax enable
+syntax on
+
+set updatetime=100
+
+map <C-o> :NERDTreeToggle <CR>
+vmap <Tab> >gv
+vmap <S-Tab> <gv
+
+nnoremap <S-Up> :m-2<CR>
+nnoremap <S-Down> :m+<CR>
+inoremap <S-Up> <Esc>:m-2<CR>
+inoremap <S-Down> <Esc>:m+<CR>
+
+let g:rainbow_active = 1
+let g:rustfmt_autosave = 1
+
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
+set noshowmode
+
+set termguicolors
+let g:two_firewatch_italics=1
+colorscheme dracula
+set background=dark
+
+ " 'challenger_deep',
+let g:lightline = {
+      \ 'colorscheme': 'dracula',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'FugitiveHead'
+      \ },
+      \ }
+
+set showmatch           " Show matching brackets.
+set number              " Show the line numbers on the left side.
+set expandtab           " Insert spaces when TAB is pressed.
+set softtabstop=2
+set tabstop=2           " Render TABs using this many spaces.
+set shiftwidth=2        " Indentation amount for < and > commands.
+set splitright
+set splitbelow
+
+let g:rust_recommended_style = 0
+let g:ycm_rust_toolchain_root = "stable"
+
+let g:coq_settings = { 'auto_start': 'shut-up', 'display.icons.mode': 'none' }
+
+if !&scrolloff
+  set scrolloff=3       " Show next 3 lines while scrolling.
+endif
+if !&sidescrolloff
+  set sidescrolloff=5   " Show next 5 columns while side-scrolling.
+endif
+
+" Tell Vim which characters to show for expanded TABs,
+" trailing whitespace, and end-of-lines. VERY useful!
+if &listchars ==# 'eol:$'
+  set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+endif
+set list                " Show problematic characters.
+
+lua require('plugins')
+lua require('init')
